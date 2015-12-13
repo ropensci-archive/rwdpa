@@ -1,0 +1,22 @@
+Package: rwdpa
+Title: World Database of Protected Areas
+Description: Client for the World Database of Protected Areas.
+    Fetching metadata on the areas, fetching shape files for each,
+    functions for simplifying polygons, for plotting, and converting
+    to WKT to faciltate downstream quries of species occurrence
+    data.
+Version: 0.0.1.9000
+License: MIT + file LICENSE
+Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
+    email = "myrmecocystus@gmail.com"), person("Pieter", "Provoost", role = "aut")
+    )
+URL: https://github.com/sckott/rwdpa
+BugReports: https://github.com/sckott/rwdpa/issues
+Imports:
+    httr,
+    sp,
+    rgdal,
+    rmapshaper,
+    readr,
+    dplyr
+RoxygenNote: 5.0.1

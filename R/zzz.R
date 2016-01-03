@@ -1,66 +1,28 @@
-vliz_base <- function(x) "http://geo.vliz.be/geoserver/MarineRegions/ows"
-mr_base <- function() "http://marineregions.org/rest"
+wdpa_base <- function() "http://www.protectedplanet.net"
 
-m_GET <- function(url, args, path = NULL, overwrite = NULL, format = "application/xml", ...) {
-  if (args$outputFormat == "SHAPE-ZIP") {
-    if (!file.exists(path)) {
+wdpaGET2 <- function(url, args, ...) {
+  x <- GET(url, query = args, ...)
+  stop_for_status(x)
+  content(x, "text")
+}
+
+wdpaGET <- function(url, args, path, overwrite) {
+  pathx <- file.path(path, "WDPA_Nov2015.zip")
+  pathcc <- file.path(path, "WDPA_Nov2015/WDPA_Nov2015-csv.csv")
+  if (file.exists(pathcc)) {
+    return(pathcc)
+  } else {
+    if (!file.exists(pathx)) {
       dir.create(path, recursive = TRUE, showWarnings = FALSE)
     }
-    path <- file.path(path, paste0(sub(":", "_", args$typeName), ".zip"))
-    tt <- httr::GET(url, query = args, write_disk(path = path, overwrite = overwrite), ...)
-    stop_for_status(tt)
-    file <- tt$request$output$path
-    exdir <- sub(".zip", "", path)
-    unzip(file, exdir = exdir)
-    path.expand(list.files(exdir, pattern = ".shp", full.names = TRUE))
-  } else {
-    getter(url, args, format, ...)
-  }
-}
-
-getter <- function(url, args = list(), format, ...) {
-  tt <- GET(url, query = args, ...)
-  err_handle(tt, format)
-  content(tt, "text")
-}
-
-err_handle <- function(x, format) {
-  if (x$status_code > 201) {
-    stop(http_status(x)$message, call. = FALSE)
-  } else {
-    if (x$headers$`content-type` != format) {
-      stop("Region not found, try another search", call. = FALSE)
-    }
-  }
-}
-
-ex_name <- function(x, y) {
-  xml_text(xml_children(x)[[y]])
-}
-
-check4pkg <- function(x) {
-  if (!requireNamespace(x, quietly = TRUE)) {
-    stop("Please install ", x, call. = FALSE)
-  } else {
-    invisible(TRUE)
-  }
-}
-
-make_args <- function(format, name, key, maxFeatures) {
-  format <- match.arg(format, c('geojson', 'shp'))
-  format <- switch(format, geojson = "application/json", shp = "SHAPE-ZIP")
-  key <- nameorkey(name, key)
-  list(service = 'WFS', version = '1.0.0', request = 'GetFeature',
-       typeName = key, maxFeatures = maxFeatures, outputFormat = format)
-}
-
-nameorkey <- function(name, key) {
-  stopifnot(xor(!is.null(name), !is.null(key)))
-  if (is.null(key)) {
-    nms <- region_names()
-    nms[vapply(nms, "[[", "", "title") == name][[1]]$name
-  } else {
-    key
+    x <- GET(url, query = args, config(followlocation = TRUE),
+             write_disk(pathx, overwrite))
+    stop_for_status(x)
+    zpath <- x$request$output$path
+    unzip(zpath, exdir = sub(".zip", "", zpath))
+    pathc <- list.files(sub(".zip", "", zpath), pattern = ".csv", full.names = TRUE)
+    unlink(zpath)
+    return(pathc)
   }
 }
 
@@ -71,3 +33,5 @@ pluck <- function(x, name, type) {
     vapply(x, "[[", name, FUN.VALUE = type)
   }
 }
+
+cpt <- function(l) Filter(Negate(is.null), l)

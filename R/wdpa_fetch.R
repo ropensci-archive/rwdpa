@@ -10,7 +10,7 @@
 #' wdpa_fetch()
 #' }
 wdpa_fetch <- function(path = "~/.rwdpa", overwrite = TRUE) {
-  xx <- wdpaGET(url = file.path(wdpa_base(), "WDPA_Nov2015"),
+  xx <- wdpaGET(url = file.path(wdpa_base(), "downloads", "WDPA_Nov2015"),
                 args = list(type = 'csv'), path, overwrite)
   readr::read_csv(xx)
 }

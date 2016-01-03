@@ -10,29 +10,7 @@
 #' wdpa_meta()
 #' }
 wdpa_meta <- function(path = "~/.rwdpa", overwrite = TRUE) {
-  xx <- wdpaGET(url = file.path(wdpa_base(), "WDPA_Nov2015"),
+  xx <- wdpaGET(url = file.path(wdpa_base(), "downloads", "WDPA_Nov2015"),
             args = list(type = 'csv'), path, overwrite)
   readr::read_csv(xx)
-}
-
-wdpa_base <- function() "http://www.protectedplanet.net/downloads"
-
-wdpaGET <- function(url, args, path, overwrite) {
-  pathx <- file.path(path, "WDPA_Nov2015.zip")
-  pathcc <- file.path(path, "WDPA_Nov2015/WDPA_Nov2015-csv.csv")
-  if (file.exists(pathcc)) {
-    return(pathcc)
-  } else {
-    if (!file.exists(pathx)) {
-      dir.create(path, recursive = TRUE, showWarnings = FALSE)
-    }
-    x <- GET(url, query = args, config(followlocation = TRUE),
-             write_disk(pathx, overwrite))
-    stop_for_status(x)
-    zpath <- x$request$output$path
-    unzip(zpath, exdir = sub(".zip", "", zpath))
-    pathc <- list.files(sub(".zip", "", zpath), pattern = ".csv", full.names = TRUE)
-    unlink(zpath)
-    return(pathc)
-  }
 }

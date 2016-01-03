@@ -10,9 +10,7 @@ before_script:
   - chmod 755 ./travis-tool.sh
   - ./travis-tool.sh bootstrap
   - ./travis-tool.sh install_deps
-
-install_github:
- - ateucher/rmapshaper
+  - ./travis-tool.sh install_github ateucher/rmapshaper
 
 after_failure:
   - ./travis-tool.sh dump_logs

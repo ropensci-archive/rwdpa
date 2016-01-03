@@ -46,7 +46,7 @@ By lat/long
 
 ```{r}
 res <- wdpa_meta_sites(lat = 51, long = 2.5)
-head(res$official[,-1])
+head(res$official[,2:5])
 ```
 
 ## Meta

@@ -1,7 +1,53 @@
 rwdpa
 =====
 
+```{r echo=FALSE}
+knitr::opts_chunk$set(
+  warning = FALSE,
+  message = FALSE,
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+[![Build Status](https://travis-ci.org/ropenscilabs/rwdpa.svg)](https://travis-ci.org/ropenscilabs/rwdpa)
+
 `rwdpa` - World Database of Protected Areas
+
+## Install
+
+CRAN stable version
+
+```{r eval=FALSE}
+install.packages("rwdpa")
+```
+
+Development version from Github
+
+```{r eval=FALSE}
+install.packages("devtools")
+devtools::install_github("ropenscilabs/rwdpa")
+```
+
+```{r}
+library("rwdpa")
+```
+
+## Search for protected areas
+
+By site id
+
+```{r}
+res <- wdpa_meta_sites(id = 40597)
+res$official[1:5]
+```
+
+By lat/long
+
+```{r}
+res <- wdpa_meta_sites(lat = 51, long = 2.5)
+head(res$official[,-1])
+```
 
 ## Meta
 

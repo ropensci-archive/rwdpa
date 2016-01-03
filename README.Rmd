@@ -26,6 +26,7 @@ Development version from Github
 
 ```{r eval=FALSE}
 install.packages("devtools")
+devtools::install_github("ateucher/rmapshaper")
 devtools::install_github("ropenscilabs/rwdpa")
 ```
 

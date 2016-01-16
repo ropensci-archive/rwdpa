@@ -1,28 +1,27 @@
 language: c
 sudo: required
 dist: trusty
-script: ./travis-tool.sh run_tests
-
+script: "./travis-tool.sh run_tests"
 before_script:
-  - sudo apt-get --yes --force-yes update -qq
-  - sudo apt-get install -y gdal-bin libgdal-dev libgdal1-dev netcdf-bin libproj-dev libv8-dev
-  - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
-  - chmod 755 ./travis-tool.sh
-  - ./travis-tool.sh bootstrap
-  - ./travis-tool.sh install_deps
-  - ./travis-tool.sh install_github ateucher/rmapshaper
-
+- sudo apt-get --yes --force-yes update -qq
+- sudo apt-get install -y gdal-bin libgdal-dev libgdal1-dev netcdf-bin libproj-dev
+  libv8-dev
+- curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
+- chmod 755 ./travis-tool.sh
+- "./travis-tool.sh bootstrap"
+- "./travis-tool.sh install_deps"
+- "./travis-tool.sh install_github ateucher/rmapshaper"
 after_failure:
-  - ./travis-tool.sh dump_logs
-
+- "./travis-tool.sh dump_logs"
 env:
-   global:
-     - R_LIBS="http://cran.rstudio.com"
-     - R_BUILD_ARGS="--no-build-vignettes --no-manual"
-     - R_CHECK_ARGS="--no-build-vignettes --no-manual --as-cran"
-     - BOOTSTRAP_LATEX=""
-
+  global:
+  - R_LIBS="http://cran.rstudio.com"
+  - R_BUILD_ARGS="--no-build-vignettes --no-manual"
+  - R_CHECK_ARGS="--no-build-vignettes --no-manual --as-cran"
+  - BOOTSTRAP_LATEX=""
 notifications:
   email:
     on_success: change
     on_failure: change
+  slack:
+    secure: FdOnMLs8w+Ycy/WwbJIYg4m+Fw1AH5RsOldta25IcVvAk429hYGZ6dYllaSBQr6Oux+Xd4aA1Kix2kIjEmH9h3D1WYtrKKBobfu5Uwpl9GYui4G33tC8gip+oqhmOUbPCnNfjoNUdjbqXEo8PQx4jxv7ftngSc3SUvtq4V99DDaqRT3SikfGaXy5GruCWTLNEREYDPtebLWyVliv2brD1c+fpVQ4KdprsVO6feNbMbj6vNj6w3Fyf8CW+HvxsL/7CmxZFbdXz5ivrH5I26AoLWR2JsUaDKUrbkK/ZOMZd6U/yXyYOq1SB/XpvaOrRq230NnTCwQfceGcDx1EGH5Bela+gMLBHp02HcthJDbwRp8O4B1Db+gPdh/wObKlE3Pu/N9zp8tD8x0m5ayrphaRv44hRZzt40Lfvwpw3O3AU3LUxSex3mbKXSpvh5iiUtj4g4sUHwEsQgP0wDY7OQj7XtBdoqpvzmKkHsfcZ+fU96hzcutDezqFnBUWELZNA+ypyzqeYzO+sY3a//seEsr/cFwt1H0E71ZDkoZggwerVHkyaubti7wq6JTVhVjTKoEOy2JfF0StGFsYH4f10wwN3g09X7JhRaWIsltqsiO4LRmaZzk3EoLLcRpwE6Tug6oZQQGSUjMU85cPcRPAznYFMbPBric87MHTNo2Fr5R3AAg=

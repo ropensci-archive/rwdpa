@@ -5,7 +5,7 @@ Description: Client for the World Database of Protected Areas.
     functions for simplifying polygons, for plotting, and converting
     to WKT to faciltate downstream queries of species occurrence
     data.
-Version: 0.0.2.9000
+Version: 0.0.2.9100
 License: MIT + file LICENSE
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"), person("Pieter", "Provoost", role = "aut")

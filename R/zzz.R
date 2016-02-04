@@ -3,7 +3,7 @@ wdpa_base <- function() "http://www.protectedplanet.net"
 wdpaGET2 <- function(url, args, ...) {
   x <- GET(url, query = args, ...)
   stop_for_status(x)
-  content(x, "text")
+  content(x, "text", encoding = "UTF-8")
 }
 
 wdpaGET <- function(url, args, path, overwrite) {

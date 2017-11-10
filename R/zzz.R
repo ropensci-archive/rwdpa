@@ -35,7 +35,7 @@ wdpaGET <- function(id, args, overwrite, ...) {
     x <- conn$get(query = args, disk = pathx)
     x$raise_for_status()
     zpath <- x$content
-    unzip(zpath, exdir = sub(".zip", "", zpath))
+    utils::unzip(zpath, exdir = sub(".zip", "", zpath))
     pathc <- list.files(sub(".zip", "", zpath),
       pattern = switch(args$type, csv = "-csv", shapefile = ".shp", kml = "-kml"),
       full.names = TRUE

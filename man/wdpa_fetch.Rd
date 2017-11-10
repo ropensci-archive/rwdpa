@@ -28,7 +28,7 @@ If  you don't have the metadata file, we download it for you
 and read it in. After that we jus read the cached version. If for some
 reason that file is deleted, we'll detect it and download again.
 
-The path file written to is managed via \code{rw_cache}. See \link{caching}.
+The path file written to is managed via \code{rw_cache}. See \link{rw_cache}.
 
 Uses \link[readr:read_csv]{readr::read_csv} for csv and \link[sf:read_sf]{sf::read_sf} for shp and kml internally
 }

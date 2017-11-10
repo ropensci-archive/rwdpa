@@ -5,14 +5,14 @@
 #' the data
 #' @param type (character) type of file, one of shapefile (default),
 #' kml, or csv
-#' @param overwrite (logical) Overwrite if exists. Default: \code{TRUE}
+#' @param overwrite (logical) Overwrite if exists. Default: `TRUE`
 #' @param ... Further named parameters passed on to [crul::HttpClient]
 #'
 #' @details If  you don't have the metadata file, we download it for you
 #' and read it in. After that we jus read the cached version. If for some
 #' reason that file is deleted, we'll detect it and download again.
 #'
-#' The path file written to is managed via `rw_cache`. See [caching].
+#' The path file written to is managed via `rw_cache`. See [rw_cache].
 #'
 #' Uses [readr::read_csv] for csv and [sf::read_sf] for shp and kml internally
 #'

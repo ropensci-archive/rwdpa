@@ -2,14 +2,13 @@
 % Please edit documentation in R/rwdpa-package.R
 \docType{package}
 \name{rwdpa-package}
-\alias{rwdpa}
 \alias{rwdpa-package}
+\alias{rwdpa}
 \title{World Database of Protected Areas}
 \description{
 World Database of Protected Areas
 }
 \author{
-Scott Chamberlain \email{myrmecocystus@gmail.com}
+Scott Chamberlain \email{myrmecocystus+r@gmail.com}
 }
 \keyword{package}
-

@@ -6,7 +6,7 @@
 #' @param long (integer) longitude
 #' @param type (character) one of 'official' or 'public'. Default: both returned
 #' @param page (integer) page to return, Default: 1
-#' @param ... Further named parameters passed on to \code{\link[httr]{GET}}
+#' @param ... Further named parameters passed on to [crul::HttpClient]
 #' @details This function uses the Protected Planet API
 #' @references \url{http://www.protectedplanet.net/api2/sites}
 #' @examples \dontrun{

@@ -18,7 +18,7 @@ wdpa_meta_sites(id = NULL, lat = NULL, long = NULL, type = NULL,
 
 \item{page}{(integer) page to return, Default: 1}
 
-\item{...}{Further named parameters passed on to \code{\link[httr]{GET}}}
+\item{...}{Further named parameters passed on to \link[crul:HttpClient]{crul::HttpClient}}
 }
 \description{
 Get WDPA metadata
@@ -38,4 +38,3 @@ wdpa_meta_sites(type = 'public')
 \references{
 \url{http://www.protectedplanet.net/api2/sites}
 }
-

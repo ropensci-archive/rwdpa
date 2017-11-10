@@ -4,12 +4,21 @@
 \alias{wdpa_fetch}
 \title{Fetch WDPA shp file}
 \usage{
-wdpa_fetch(path = "~/.rwdpa", overwrite = TRUE)
+wdpa_fetch(id = NULL, type = "csv", overwrite = TRUE, ...)
 }
 \arguments{
-\item{path}{Base path to store file at. Default: \code{~/.rwdpa}}
+\item{id}{(numeric/integer) a WDPA site ID. if not given, we get all
+the data}
 
-\item{overwrite}{Overwrite if exists. Default: \code{TRUE}}
+\item{type}{(character) type of file, one of shapefile (default),
+kml, or csv}
+
+\item{overwrite}{(logical) Overwrite if exists. Default: \code{TRUE}}
+
+\item{...}{Further named parameters passed on to \link[crul:HttpClient]{crul::HttpClient}}
+}
+\value{
+varies depending on value of \code{type} parameter
 }
 \description{
 Fetch WDPA shp file
@@ -18,10 +27,24 @@ Fetch WDPA shp file
 If  you don't have the metadata file, we download it for you
 and read it in. After that we jus read the cached version. If for some
 reason that file is deleted, we'll detect it and download again.
+
+The path file written to is managed via \code{rw_cache}. See \link{caching}.
+
+Uses \link[readr:read_csv]{readr::read_csv} for csv and \link[sf:read_sf]{sf::read_sf} for shp and kml internally
 }
 \examples{
 \dontrun{
-wdpa_fetch()
-}
-}
+# a single site
+wdpa_fetch(id = 76200, type = "csv")
+wdpa_fetch(id = 76200, "shapefile")
+wdpa_fetch(id = 76200, "kml")
 
+# another id
+wdpa_fetch(id = 2137, type = "csv")
+wdpa_fetch(id = 2137, "shapefile")
+wdpa_fetch(id = 2137, "kml")
+
+# entire dataset, beware, very large
+# wdpa_fetch()
+}
+}

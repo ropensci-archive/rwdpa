@@ -1,10 +1,11 @@
 #' World Database of Protected Areas
 #'
-#' @import httr sp rgdal rmapshaper readr dplyr
+#' @import sp sf rmapshaper readr dplyr
+#' @importFrom crul HttpClient
 #' @importFrom jsonlite fromJSON
 #' @name rwdpa-package
 #' @aliases rwdpa
 #' @docType package
-#' @author Scott Chamberlain \email{myrmecocystus@@gmail.com}
+#' @author Scott Chamberlain \email{myrmecocystus+r@@gmail.com}
 #' @keywords package
 NULL

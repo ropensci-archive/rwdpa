@@ -1,4 +1,4 @@
-wdpa_base <- function() "http://www.protectedplanet.net"
+wdpa_base <- function() "https://www.protectedplanet.net"
 
 wdpaGET2 <- function(url, args, ...) {
   x <- GET(url, query = args, ...)
@@ -6,21 +6,40 @@ wdpaGET2 <- function(url, args, ...) {
   content(x, "text", encoding = "UTF-8")
 }
 
-wdpaGET <- function(url, args, path, overwrite) {
-  pathx <- file.path(path, "WDPA_Nov2015.zip")
-  pathcc <- file.path(path, "WDPA_Nov2015/WDPA_Nov2015-csv.csv")
-  if (file.exists(pathcc)) {
+wdpaGET <- function(id, args, overwrite, ...) {
+  url <- file.path(wdpa_base(), "downloads",
+    paste0("WDPA_Nov", format(Sys.Date(), "%Y")))
+  if (!is.null(id)) url <- paste0(url, "_protected_area_", id)
+
+  pathx <- file.path(rw_cache$cache_path_get(),
+    paste0(basename(url), "-", args$type, ".zip"))
+  pathcc <- file.path(
+    rw_cache$cache_path_get(),
+    paste0(basename(url), "-", args$type),
+    switch(args$type,
+      csv = paste0(basename(url), "-csv.csv"),
+      shapefile = paste0(basename(url), "-shapefile-"),
+      kml = paste0(basename(url), "-kml.kml")
+    )
+  )
+
+  if ( any(vapply(rw_cache$list(), function(z) grepl(pathcc, z), TRUE)) ) {
+    message("in cache already")
+    if (args$type == "shapefile") {
+      pathcc <- list.files(dirname(pathcc), pattern=".shp", full.names=TRUE)
+    }
     return(pathcc)
   } else {
-    if (!file.exists(pathx)) {
-      dir.create(path, recursive = TRUE, showWarnings = FALSE)
-    }
-    x <- GET(url, query = args, config(followlocation = TRUE),
-             write_disk(pathx, overwrite))
-    stop_for_status(x)
-    zpath <- x$request$output$path
+    rw_cache$mkdir()
+    conn <- crul::HttpClient$new(url = url, opts = list(followlocation = TRUE, ...))
+    x <- conn$get(query = args, disk = pathx)
+    x$raise_for_status()
+    zpath <- x$content
     unzip(zpath, exdir = sub(".zip", "", zpath))
-    pathc <- list.files(sub(".zip", "", zpath), pattern = ".csv", full.names = TRUE)
+    pathc <- list.files(sub(".zip", "", zpath),
+      pattern = switch(args$type, csv = "-csv", shapefile = ".shp", kml = "-kml"),
+      full.names = TRUE
+    )
     unlink(zpath)
     return(pathc)
   }

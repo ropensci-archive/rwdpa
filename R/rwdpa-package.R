@@ -1,8 +1,9 @@
 #' World Database of Protected Areas
 #'
-#' @import sp sf rmapshaper readr dplyr
+#' @import sf readr
 #' @importFrom crul HttpClient
 #' @importFrom jsonlite fromJSON
+#' @importFrom hoardr hoard
 #' @name rwdpa-package
 #' @aliases rwdpa
 #' @docType package

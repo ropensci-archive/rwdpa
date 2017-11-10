@@ -1,4 +1,4 @@
-#' Fetch WDPA shp file
+#' Fetch WDPA files
 #'
 #' @export
 #' @param id (numeric/integer) a WDPA site ID. if not given, we get all

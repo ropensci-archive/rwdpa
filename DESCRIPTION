@@ -1,14 +1,15 @@
 Package: rwdpa
-Title: World Database of Protected Areas
+Title: World Database of Protected Areas Client
 Description: Client for the World Database of Protected Areas.
     Fetching metadata on the areas, fetching shape files for each,
     functions for simplifying polygons, for plotting, and converting
     to WKT to faciltate downstream queries of species occurrence
     data.
-Version: 0.0.8.9100
+Version: 0.0.8.9510
 License: MIT + file LICENSE
-Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
-    email = "myrmecocystus+r@gmail.com"), person("Pieter", "Provoost", role = "aut")
+Authors@R: c(
+    person("Scott", "Chamberlain", role = c("aut", "cre"), email = "myrmecocystus+r@gmail.com"),
+    person("Pieter", "Provoost", role = "ctb")
     )
 URL: https://github.com/ropenscilabs/rwdpa
 BugReports: https://github.com/ropenscilabs/rwdpa/issues
@@ -16,10 +17,7 @@ Roxygen: list(markdown = TRUE)
 Imports:
     crul (>= 0.4.0),
     jsonlite (>= 1.5),
-    sp,
     sf,
-    rmapshaper,
     readr,
-    dplyr,
     hoardr
 RoxygenNote: 6.0.1

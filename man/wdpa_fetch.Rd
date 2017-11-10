@@ -2,7 +2,7 @@
 % Please edit documentation in R/wdpa_fetch.R
 \name{wdpa_fetch}
 \alias{wdpa_fetch}
-\title{Fetch WDPA shp file}
+\title{Fetch WDPA files}
 \usage{
 wdpa_fetch(id = NULL, type = "csv", overwrite = TRUE, ...)
 }
@@ -21,7 +21,7 @@ kml, or csv}
 varies depending on value of \code{type} parameter
 }
 \description{
-Fetch WDPA shp file
+Fetch WDPA files
 }
 \details{
 If  you don't have the metadata file, we download it for you

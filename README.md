@@ -22,9 +22,9 @@ devtools::install_github("ropenscilabs/rwdpa")
 library("rwdpa")
 ```
 
-## Fetch files
+## Fetch files by ID
 
-by ID
+Default is file type `csv`
 
 
 ```r
@@ -42,7 +42,14 @@ wdpa_fetch(id = 76200, type = "csv")
 #> #   ISO3 <chr>
 ```
 
+But you can also get `shapefile` or `kml`
+
 
 ## Meta
 
+* Please [report any issues or bugs](https://github.com/ropenscilabs/rwdpa/issues).
+* License: MIT
+* Get citation information for `rwdpa` in R doing `citation(package = 'rwdpa')`
 * Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+
+[![ropensci_footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)

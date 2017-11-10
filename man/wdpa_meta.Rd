@@ -21,6 +21,7 @@ reason that file is deleted, we'll detect it and download again.
 }
 \examples{
 \dontrun{
-wdpa_meta()
+# wdpa_meta()
 }
 }
+\keyword{internal}

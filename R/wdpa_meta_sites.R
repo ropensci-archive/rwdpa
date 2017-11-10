@@ -1,6 +1,7 @@
 #' Get WDPA metadata
 #'
 #' @export
+#' @keywords internal
 #' @param id (integer) Site id
 #' @param lat (integer) latitude
 #' @param long (integer) longitude
@@ -10,14 +11,15 @@
 #' @details This function uses the Protected Planet API
 #' @references \url{http://www.protectedplanet.net/api2/sites}
 #' @examples \dontrun{
-#' wdpa_meta_sites(id = 40597)
-#' wdpa_meta_sites(lat = 51, long = 2.5)
-#' wdpa_meta_sites(page = 2)
-#' wdpa_meta_sites(type = 'official')
-#' wdpa_meta_sites(type = 'public')
+#' # wdpa_meta_sites(id = 40597)
+#' # wdpa_meta_sites(lat = 51, long = 2.5)
+#' # wdpa_meta_sites(page = 2)
+#' # wdpa_meta_sites(type = 'official')
+#' # wdpa_meta_sites(type = 'public')
 #' }
 wdpa_meta_sites <- function(id = NULL, lat = NULL, long = NULL, type = NULL,
                             page = NULL, ...) {
+  stop("not working yet, come back later")
 
   url <- file.path(wdpa_base(), "api2/sites")
   if (!is.null(id)) {

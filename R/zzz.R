@@ -1,9 +1,10 @@
 wdpa_base <- function() "https://www.protectedplanet.net"
 
 wdpaGET2 <- function(url, args, ...) {
-  x <- GET(url, query = args, ...)
-  stop_for_status(x)
-  content(x, "text", encoding = "UTF-8")
+  conn <- crul::HttpClient$new(url = url, opts = list(...))
+  x <- conn$get(query = ags)
+  x$raise_for_status()
+  x$parse("UTF-8")
 }
 
 wdpaGET <- function(id, args, overwrite, ...) {

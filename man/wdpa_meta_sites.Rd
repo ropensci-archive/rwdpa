@@ -28,13 +28,14 @@ This function uses the Protected Planet API
 }
 \examples{
 \dontrun{
-wdpa_meta_sites(id = 40597)
-wdpa_meta_sites(lat = 51, long = 2.5)
-wdpa_meta_sites(page = 2)
-wdpa_meta_sites(type = 'official')
-wdpa_meta_sites(type = 'public')
+# wdpa_meta_sites(id = 40597)
+# wdpa_meta_sites(lat = 51, long = 2.5)
+# wdpa_meta_sites(page = 2)
+# wdpa_meta_sites(type = 'official')
+# wdpa_meta_sites(type = 'public')
 }
 }
 \references{
 \url{http://www.protectedplanet.net/api2/sites}
 }
+\keyword{internal}

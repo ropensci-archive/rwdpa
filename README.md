@@ -9,18 +9,10 @@ rwdpa
 
 ## Install
 
-CRAN stable version
-
-
-```r
-install.packages("rwdpa")
-```
-
 Development version from Github
 
 
 ```r
-install.packages("devtools")
 devtools::install_github("ateucher/rmapshaper")
 devtools::install_github("ropenscilabs/rwdpa")
 ```
@@ -30,44 +22,26 @@ devtools::install_github("ropenscilabs/rwdpa")
 library("rwdpa")
 ```
 
-## Search for protected areas
+## Fetch files
 
-By site id
-
-
-```r
-res <- wdpa_meta_sites(id = 40597)
-res$official[1:5]
-#> $WDPAID
-#> [1] 40597
-#> 
-#> $COUNTRY
-#> [1] "UGA"
-#> 
-#> $SUB_LOC
-#> [1] "Not Reported"
-#> 
-#> $NAME
-#> [1] "Lopeichubei"
-#> 
-#> $ORIG_NAME
-#> [1] "Lopeichubei"
-```
-
-By lat/long
+by ID
 
 
 ```r
-res <- wdpa_meta_sites(lat = 51, long = 2.5)
-head(res$official[,2:5])
-#>   WDPA_PID     GOV_TYPE             MANG_AUTH       INT_CRIT
-#> 1       NA Not Reported Local law enforcement Not Applicable
-#> 2       NA Not Reported       Natural England           <NA>
-#> 3       NA Not Reported          Not Reported   Not Reported
-#> 4       NA Not Reported          Not Reported   Not Reported
-#> 5       NA Not Reported          Not Reported   Not Reported
-#> 6       NA Not Reported          Not Reported   Not Reported
+wdpa_fetch(id = 76200, type = "csv")
+#> # A tibble: 1 x 29
+#>      TYPE WDPAID WDPA_PID PA_DEF            NAME       ORIG_NAME
+#>     <chr>  <int>    <int>  <int>           <chr>           <chr>
+#> 1 Polygon  76200    76200      1 Oregon Badlands Oregon Badlands
+#> # ... with 23 more variables: DESIG <chr>, DESIG_ENG <chr>,
+#> #   DESIG_TYPE <chr>, IUCN_CAT <chr>, INT_CRIT <chr>, MARINE <int>,
+#> #   REP_M_AREA <int>, GIS_M_AREA <int>, REP_AREA <dbl>, GIS_AREA <dbl>,
+#> #   NO_TAKE <chr>, NO_TK_AREA <int>, STATUS <chr>, STATUS_YR <int>,
+#> #   GOV_TYPE <chr>, OWN_TYPE <chr>, MANG_AUTH <chr>, MANG_PLAN <chr>,
+#> #   VERIF <chr>, METADATAID <int>, SUB_LOC <chr>, PARENT_ISO3 <chr>,
+#> #   ISO3 <chr>
 ```
+
 
 ## Meta
 

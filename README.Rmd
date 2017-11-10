@@ -16,16 +16,9 @@ knitr::opts_chunk$set(
 
 ## Install
 
-CRAN stable version
-
-```{r eval=FALSE}
-install.packages("rwdpa")
-```
-
 Development version from Github
 
 ```{r eval=FALSE}
-install.packages("devtools")
 devtools::install_github("ateucher/rmapshaper")
 devtools::install_github("ropenscilabs/rwdpa")
 ```
@@ -34,21 +27,14 @@ devtools::install_github("ropenscilabs/rwdpa")
 library("rwdpa")
 ```
 
-## Search for protected areas
+## Fetch files
 
-By site id
-
-```{r}
-res <- wdpa_meta_sites(id = 40597)
-res$official[1:5]
-```
-
-By lat/long
+by ID
 
 ```{r}
-res <- wdpa_meta_sites(lat = 51, long = 2.5)
-head(res$official[,2:5])
+wdpa_fetch(id = 76200, type = "csv")
 ```
+
 
 ## Meta
 

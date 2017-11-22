@@ -1,8 +1,9 @@
 wdpa_base <- function() "https://www.protectedplanet.net"
+wdpa_api <- function() "https://api.protectedplanet.net"
 
-wdpaGET2 <- function(url, args, ...) {
-  conn <- crul::HttpClient$new(url = url, opts = list(...))
-  x <- conn$get(query = ags)
+wdpaGET2 <- function(path, args, ...) {
+  conn <- crul::HttpClient$new(url = wdpa_api(), opts = list(...))
+  x <- conn$get(path, query = args)
   x$raise_for_status()
   x$parse("UTF-8")
 }
@@ -55,3 +56,12 @@ pluck <- function(x, name, type) {
 }
 
 cpt <- function(l) Filter(Negate(is.null), l)
+
+check_key <- function (x) {
+  tmp <- if (is.null(x)) Sys.getenv("WDPA_KEY", "") else x
+  if (tmp == "") {
+    getOption("wdpa_key", stop("need an API key for the WDPA API"))
+  } else {
+    tmp
+  }
+}

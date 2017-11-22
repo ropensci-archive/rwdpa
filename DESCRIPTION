@@ -1,6 +1,7 @@
 Package: rwdpa
 Title: World Database of Protected Areas Client
-Description: Client for the World Database of Protected Areas.
+Description: Client for the World Database of Protected Areas from
+    Protected Planet (<https://api.protectedplanet.net/>).
     Fetching metadata on the areas, fetching shape files for each,
     functions for simplifying polygons, for plotting, and converting
     to WKT to faciltate downstream queries of species occurrence

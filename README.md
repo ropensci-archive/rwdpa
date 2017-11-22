@@ -5,7 +5,26 @@ rwdpa
 
 [![Build Status](https://travis-ci.org/ropenscilabs/rwdpa.svg)](https://travis-ci.org/ropenscilabs/rwdpa)
 
-`rwdpa` - World Database of Protected Areas
+`rwdpa` - World Database of Protected Areas (WDPA)
+
+WPDA is hosted at <https://www.protectedplanet.net/>
+
+API:
+
+* API Docs: <https://api.protectedplanet.net/>
+* Get an API key at <https://api.protectedplanet.net/request>
+
+Package API:
+
+
+```
+#>  - rw_cache
+#>  - wdpa_meta
+#>  - wdpa_api_countries
+#>  - wdpa_api_pa_search
+#>  - wdpa_api_pa
+#>  - wdpa_fetch
+```
 
 ## Install
 
@@ -13,7 +32,6 @@ Development version from Github
 
 
 ```r
-devtools::install_github("ateucher/rmapshaper")
 devtools::install_github("ropenscilabs/rwdpa")
 ```
 
@@ -50,6 +68,6 @@ But you can also get `shapefile` or `kml`
 * Please [report any issues or bugs](https://github.com/ropenscilabs/rwdpa/issues).
 * License: MIT
 * Get citation information for `rwdpa` in R doing `citation(package = 'rwdpa')`
-* Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+* Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
 
 [![ropensci_footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)

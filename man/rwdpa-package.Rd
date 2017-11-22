@@ -8,6 +8,24 @@
 \description{
 World Database of Protected Areas
 }
+\section{WDPA Web API}{
+
+\itemize{
+\item API Docs: \url{https://api.protectedplanet.net/}
+\item Get an API key at \url{https://api.protectedplanet.net/request}
+}
+}
+
+\section{Package API}{
+
+\itemize{
+\item \code{\link[=rw_cache]{rw_cache()}} - manage bulk cached files
+\item \code{\link[=wdpa_fetch]{wdpa_fetch()}} - fetch a file
+\item \code{\link[=wdpa_meta]{wdpa_meta()}} - fetch metadata for a file
+\item \code{\link[=wdpa_meta_sites]{wdpa_meta_sites()}} - sssss
+}
+}
+
 \author{
 Scott Chamberlain \email{myrmecocystus+r@gmail.com}
 }

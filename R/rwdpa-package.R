@@ -8,9 +8,10 @@
 #' @section Package API:
 #'
 #' - [rw_cache()] - manage bulk cached files
+#' - [wdpa_api_countries()] - API, countries
+#' - [wdpa_api_pa_search()] - API, search protected areas
+#' - [wdpa_api_pa()] - API, protected areas
 #' - [wdpa_fetch()] - fetch a file
-#' - [wdpa_meta()] - fetch metadata for a file
-#' - [wdpa_meta_sites()] - sssss
 #'
 #' @import sf readr
 #' @importFrom crul HttpClient

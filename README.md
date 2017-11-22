@@ -19,7 +19,6 @@ Package API:
 
 ```
 #>  - rw_cache
-#>  - wdpa_meta
 #>  - wdpa_api_countries
 #>  - wdpa_api_pa_search
 #>  - wdpa_api_pa

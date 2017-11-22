@@ -2,11 +2,9 @@ Package: rwdpa
 Title: World Database of Protected Areas Client
 Description: Client for the World Database of Protected Areas from
     Protected Planet (<https://api.protectedplanet.net/>).
-    Fetching metadata on the areas, fetching shape files for each,
-    functions for simplifying polygons, for plotting, and converting
-    to WKT to faciltate downstream queries of species occurrence
-    data.
-Version: 0.0.8.9711
+    Fetching csv, kml, or shape files for protected areas,
+    and functions for interacting with their API.
+Version: 0.0.8.9713
 License: MIT + file LICENSE
 Authors@R: c(
     person("Scott", "Chamberlain", role = c("aut", "cre"), email = "myrmecocystus+r@gmail.com"),

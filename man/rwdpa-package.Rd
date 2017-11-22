@@ -20,9 +20,10 @@ World Database of Protected Areas
 
 \itemize{
 \item \code{\link[=rw_cache]{rw_cache()}} - manage bulk cached files
+\item \code{\link[=wdpa_api_countries]{wdpa_api_countries()}} - API, countries
+\item \code{\link[=wdpa_api_pa_search]{wdpa_api_pa_search()}} - API, search protected areas
+\item \code{\link[=wdpa_api_pa]{wdpa_api_pa()}} - API, protected areas
 \item \code{\link[=wdpa_fetch]{wdpa_fetch()}} - fetch a file
-\item \code{\link[=wdpa_meta]{wdpa_meta()}} - fetch metadata for a file
-\item \code{\link[=wdpa_meta_sites]{wdpa_meta_sites()}} - sssss
 }
 }
 

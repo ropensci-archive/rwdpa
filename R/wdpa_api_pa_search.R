@@ -40,12 +40,34 @@ wdpa_api_pa_search <- function(marine = FALSE, country = NULL,
   iucn_category = NULL, geojson = FALSE, page = 1,
   per_page = 25, token = NULL, ...) {
 
+  res <- wdpa_api_pa_search_(marine, country, designation,
+    jurisdiciton, governance, iucn_category, geojson, page,
+    per_page, token, ...)
+  res$raise_for_status()
+  jsonlite::fromJSON(res$parse("UTF-8"))$protected_areas
+}
+
+wdpa_api_pa_search_ <- function(marine = FALSE, country = NULL,
+  designation = NULL, jurisdiciton = NULL, governance = NULL,
+  iucn_category = NULL, geojson = FALSE, page = 1,
+  per_page = 25, token = NULL, ...) {
+
+  assert(marine, 'logical')
+  assert(country, 'character')
+  assert(designation, c('integer', 'numeric'))
+  assert(jurisdiciton, c('integer', 'numeric'))
+  assert(governance, c('integer', 'numeric'))
+  assert(iucn_category, c('integer', 'numeric'))
+  assert(geojson, 'logical')
+  assert(page, c('integer', 'numeric'))
+  assert(per_page, c('integer', 'numeric'))
+  assert(token, 'character')
+
   path <- "v3/protected_areas/search"
   args <- cpt(list(marine = marine, country = country,
     designation = designation, jurisdiciton = jurisdiciton,
     governance = governance, iucn_category = iucn_category,
     with_geometry = tolower(geojson), page = page,
     per_page = per_page, token = check_key(token)))
-  xx <- wdpaGET2(path, args, ...)
-  jsonlite::fromJSON(xx)$protected_areas
+  wdpaGET2(path, args, ...)
 }

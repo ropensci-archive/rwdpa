@@ -22,6 +22,24 @@
 wdpa_api_pa <- function(wdpa_id = NULL, geojson = FALSE, page = 1,
   per_page = 25, token = NULL, ...) {
 
+  res <- wdpa_api_pa_(wdpa_id, geojson, page, per_page, token, ...)
+  res$raise_for_status()
+  if (is.null(wdpa_id)) {
+    jsonlite::fromJSON(res$parse("UTF-8"))$protected_areas
+  } else {
+    jsonlite::fromJSON(res$parse("UTF-8"))$protected_area
+  }
+}
+
+wdpa_api_pa_ <- function(wdpa_id = NULL, geojson = FALSE, page = 1,
+  per_page = 25, token = NULL, ...) {
+
+  assert(wdpa_id, c('integer', 'numeric'))
+  assert(geojson, 'logical')
+  assert(page, c('integer', 'numeric'))
+  assert(per_page, c('integer', 'numeric'))
+  assert(token, 'character')
+
   if (!is.null(wdpa_id)) {
     path <- file.path("v3/protected_areas", wdpa_id)
     args <- cpt(list(with_geometry = tolower(geojson)))
@@ -31,10 +49,5 @@ wdpa_api_pa <- function(wdpa_id = NULL, geojson = FALSE, page = 1,
       per_page = per_page))
   }
   args$token <- check_key(token)
-  xx <- wdpaGET2(path, args, ...)
-  if (is.null(wdpa_id)) {
-    jsonlite::fromJSON(xx)$protected_areas
-  } else {
-    jsonlite::fromJSON(xx)$protected_area
-  }
+  wdpaGET2(path, args, ...)
 }

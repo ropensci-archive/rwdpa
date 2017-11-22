@@ -6,7 +6,7 @@ Description: Client for the World Database of Protected Areas from
     functions for simplifying polygons, for plotting, and converting
     to WKT to faciltate downstream queries of species occurrence
     data.
-Version: 0.0.8.9510
+Version: 0.0.8.9711
 License: MIT + file LICENSE
 Authors@R: c(
     person("Scott", "Chamberlain", role = c("aut", "cre"), email = "myrmecocystus+r@gmail.com"),
@@ -20,5 +20,8 @@ Imports:
     jsonlite (>= 1.5),
     sf,
     readr,
-    hoardr
+    hoardr,
+    tibble
+Suggests:
+    testthat
 RoxygenNote: 6.0.1

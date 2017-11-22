@@ -3,9 +3,9 @@ wdpa_api <- function() "https://api.protectedplanet.net"
 
 wdpaGET2 <- function(path, args, ...) {
   conn <- crul::HttpClient$new(url = wdpa_api(), opts = list(...))
-  x <- conn$get(path, query = args)
-  x$raise_for_status()
-  x$parse("UTF-8")
+  conn$get(path, query = args)
+  # x$raise_for_status()
+  # x$parse("UTF-8")
 }
 
 wdpaGET <- function(id, args, overwrite, ...) {
@@ -63,5 +63,14 @@ check_key <- function (x) {
     getOption("wdpa_key", stop("need an API key for the WDPA API"))
   } else {
     tmp
+  }
+}
+
+assert <- function (x, y) {
+  if (!is.null(x)) {
+    if (!class(x) %in% y) {
+      stop(deparse(substitute(x)), " must be of class ",
+          paste0(y, collapse = ", "), call. = FALSE)
+    }
   }
 }

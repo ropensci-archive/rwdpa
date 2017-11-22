@@ -22,6 +22,22 @@
 wdpa_api_countries <- function(country_code = NULL, geojson = FALSE, page = 1,
   per_page = 25, token = NULL, ...) {
 
+  res <- wdpa_api_countries_(country_code, geojson, page, per_page, token, ...)
+  res$raise_for_status()
+  if (is.null(country_code)) {
+    jsonlite::fromJSON(res$parse("UTF-8"))$countries
+  } else {
+    jsonlite::fromJSON(res$parse("UTF-8"))$country
+  }
+}
+
+wdpa_api_countries_ <- function(country_code = NULL, geojson = FALSE, page = 1,
+  per_page = 25, token = NULL, ...) {
+
+  assert(country_code, 'character')
+  assert(geojson, 'logical')
+  assert(page, c('integer', 'numeric'))
+  assert(per_page, c('integer', 'numeric'))
   if (!is.null(country_code)) {
     path <- file.path("v3/countries", country_code)
     args <- cpt(list(with_geometry = tolower(geojson)))
@@ -31,10 +47,5 @@ wdpa_api_countries <- function(country_code = NULL, geojson = FALSE, page = 1,
       per_page = per_page))
   }
   args$token <- check_key(token)
-  xx <- wdpaGET2(path, args, ...)
-  if (is.null(country_code)) {
-    jsonlite::fromJSON(xx)$countries
-  } else {
-    jsonlite::fromJSON(xx)$country
-  }
+  wdpaGET2(path, args, ...)
 }
